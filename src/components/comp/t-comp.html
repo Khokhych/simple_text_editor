@@ -1,0 +1,27 @@
+<div id="hello">
+    <div class="buttons">
+        adad {{dataA[0]}}
+        <label for="color">text color</label>
+        <input id="color" type="color" :value="propsButtons.color"
+            @change="colorChange($event.target.value)"
+            v-on:change="$emit('ffff', $event.target.value)" />
+
+        <label for="background_color">background color</label>
+        <input id="background_color" :value="propsButtons.BGColor" type="color"
+            @change="backgroundColorChange($event.target.value)" />
+
+        <label for="font_size">font size</label>
+        <input id="font_size" type="number" max="72"
+            :value="propsButtons.fontSize"
+            @change="fontSizeChange($event.target.value)" />
+    </div>
+
+    <div contenteditable="true" ref="textWrapp" class="text_wrapper"
+        style="border:1px solid red;padding:5px" @mouseup="textWrappMouseUp"
+        @keyup="textWrappMouseUp" @input="changetext">
+
+        <span v-for="(el , index) in elem" :index="index" :key="el.text"
+            :style="{ color: el.color, fontSize: el.fontSize + 'px', backgroundColor: el.BGColor }">{{ el.text }}</span>
+
+    </div>
+</div>
