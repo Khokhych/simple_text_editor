@@ -137,9 +137,7 @@ let getCaretPosition = function (el) {
         preCaretRange.setEnd(range.endContainer, range.endOffset);
         caretOffset = preCaretRange.toString().length - selected;
     }
-    console.log(caretOffset);
     el.setSelectionRange(caretOffset, caretOffset);
-    return caretOffset;
 }
 
 export default {
@@ -183,5 +181,22 @@ export default {
     ],
     data() {
         return {}
+    },
+    watch: {
+        elem: function (elem, oldVal) {
+            for (let index = 0; index < elem.length; index++) {
+                let item = elem[index];
+                if (+item.fontSize === +elem[index + 1].fontSize) {
+                    if (item.color === elem[index + 1].color) {
+                        if (item.BGColor === elem[index + 1].BGColor) {
+                            elem[index + 1].text = elem[index].text + elem[index + 1].text;
+                            elem.splice(index, 1);
+                        }
+                    }
+                }
+
+            }
+
+        }
     }
 };

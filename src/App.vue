@@ -1,5 +1,5 @@
 <template>
-  <comp :elem="elem" :propsButtons="propsButtons" :selectIsText="selectIsText" @ffff="change" />
+  <comp :elem="elem" :propsButtons="propsButtons" :selectIsText="selectIsText" />
 </template>
 
 <script>
@@ -24,15 +24,11 @@ export default {
       },
       selectIsText: 0,
       params: null,
-      indexlastEditElement: null,
+      indexlastEditElement: null
     };
   },
 
-  methods: {
-    change(e) {
-      console.log(e);
-    },
-  },
+  methods: {},
   components: {
     comp
   }
