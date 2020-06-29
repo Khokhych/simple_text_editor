@@ -10,7 +10,6 @@
     },
     "dependencies": {
         "vue": "^2.6.11",
-        "vuex": "^3.4.0"
     },
     "devDependencies": {
         "css-loader": "^1.0.1",

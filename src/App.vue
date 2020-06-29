@@ -9,7 +9,6 @@ export default {
   name: "app",
   data() {
     return {
-      dataAA: ["2222222222"],
       elem: [
         {
           text: "Enter text",
@@ -23,11 +22,9 @@ export default {
         color: "#000000",
         BGColor: "#ffffff"
       },
-      selectIsText: false,
+      selectIsText: 0,
       params: null,
       indexlastEditElement: null,
-      indexCaret: null,
-      caretData: null
     };
   },
 
@@ -35,10 +32,6 @@ export default {
     change(e) {
       console.log(e);
     },
-    elem() {
-      let elem = this.$store.state.text;
-      return elem;
-    }
   },
   components: {
     comp

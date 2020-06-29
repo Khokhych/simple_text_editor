@@ -42,7 +42,6 @@ function changeData(params, elem, propsButtons) {
     let indexLastSelectElement = params.lastNodeSelect.getAttribute('index');
     if (params.lastNodeSelect == params.firstNodeSelect) {
         let newElements = [];
-        console.log(11);
         if (params.firstSumblIndex) {
             let BeforeNewElementText = params.firstNodeSelect.innerText.substring(0, params.firstSumblIndex);
             let before = Object.assign({}, elem[indexFirstSelectElement]);
@@ -127,11 +126,27 @@ let changetext = function (iLast, elem, element, ) {
     return [indexTag];
 }
 
+let getCaretPosition = function (el) {
+    let caretOffset = 0,
+        sel;
+    if (typeof window.getSelection !== "undefined") {
+        let range = window.getSelection().getRangeAt(0);
+        let selected = range.toString().length;
+        let preCaretRange = range.cloneRange();
+        preCaretRange.selectNodeContents(el);
+        preCaretRange.setEnd(range.endContainer, range.endOffset);
+        caretOffset = preCaretRange.toString().length - selected;
+    }
+    console.log(caretOffset);
+    el.setSelectionRange(caretOffset, caretOffset);
+    return caretOffset;
+}
 
 export default {
     methods: {
 
         changetext: function (e) {
+            getCaretPosition(e.target);
             this.indexlastEditElement = changetext(this.indexlastEditElement, this.elem, e, this.indexCaret);
         },
         textWrappMouseUp: function (e) {
@@ -166,25 +181,7 @@ export default {
         "propsButtons",
         "selectIsText"
     ],
-    // data() {
-    //     return {
-    //         elem: [{
-    //             text: 'Enter text',
-    //             fontSize: '18',
-    //             color: '#000000',
-    //             BGColor: "#ffffff"
-    //         }, ],
-    //         propsButtons: {
-    //             fontSize: 18,
-    //             color: "#000000",
-    //             BGColor: "#ffffff",
-    //         },
-    //         selectIsText: false,
-    //         params: null,
-    //         indexlastEditElement: null,
-    //         indexCaret: null,
-    //         caretData: null
-
-    //     }
-    // }
+    data() {
+        return {}
+    }
 };
