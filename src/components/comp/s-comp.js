@@ -199,19 +199,21 @@ export default {
     },
     watch: {
         elem: function (elem, oldVal) {
-            for (let index = 0; index < elem.length; index++) {
-                let item = elem[index];
-                if (+item.fontSize === +elem[index + 1].fontSize) {
-                    if (item.color === elem[index + 1].color) {
-                        if (item.BGColor === elem[index + 1].BGColor) {
-                            elem[index + 1].text = elem[index].text + elem[index + 1].text;
-                            elem.splice(index, 1);
+            try {
+                for (let index = 0; index < elem.length; index++) {
+                    let item = elem[index];
+                    if (+item.fontSize === +elem[index + 1].fontSize) {
+                        if (item.color === elem[index + 1].color) {
+                            if (item.BGColor === elem[index + 1].BGColor) {
+                                elem[index + 1].text = elem[index].text + elem[index + 1].text;
+                                elem.splice(index, 1);
+                            }
                         }
                     }
                 }
+            } catch (error) {
 
             }
-
         }
     }
 };
