@@ -137,14 +137,29 @@ let getCaretPosition = function (el) {
         preCaretRange.setEnd(range.endContainer, range.endOffset);
         caretOffset = preCaretRange.toString().length - selected;
     }
-    el.setSelectionRange(caretOffset, caretOffset);
+
+    function setCaret() {
+        var el = document.getElementById("sss");
+        console.log(el.childNodes[0]);
+        var range = document.createRange();
+        var sel = window.getSelection();
+        range.setStart(el.childNodes[0], 1);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        el.focus();
+    }
+    // setCaret();
+
+    // setSelection(el, caretOffset, caretOffset);
+    // el.setSelectionRange(caretOffset, caretOffset);
 }
 
 export default {
     methods: {
 
         changetext: function (e) {
-            getCaretPosition(e.target);
+            // getCaretPosition(e.target);
             this.indexlastEditElement = changetext(this.indexlastEditElement, this.elem, e, this.indexCaret);
         },
         textWrappMouseUp: function (e) {
