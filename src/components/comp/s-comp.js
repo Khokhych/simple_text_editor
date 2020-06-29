@@ -161,26 +161,30 @@ export default {
         },
 
     },
-    props: ["dataA"],
-    data() {
-        return {
-            elem: [{
-                text: 'Enter text',
-                fontSize: '18',
-                color: '#000000',
-                BGColor: "#ffffff"
-            }, ],
-            propsButtons: {
-                fontSize: 18,
-                color: "#000000",
-                BGColor: "#ffffff",
-            },
-            selectIsText: false,
-            params: null,
-            indexlastEditElement: null,
-            indexCaret: null,
-            caretData: null
+    props: [
+        "elem",
+        "propsButtons",
+        "selectIsText"
+    ],
+    // data() {
+    //     return {
+    //         elem: [{
+    //             text: 'Enter text',
+    //             fontSize: '18',
+    //             color: '#000000',
+    //             BGColor: "#ffffff"
+    //         }, ],
+    //         propsButtons: {
+    //             fontSize: 18,
+    //             color: "#000000",
+    //             BGColor: "#ffffff",
+    //         },
+    //         selectIsText: false,
+    //         params: null,
+    //         indexlastEditElement: null,
+    //         indexCaret: null,
+    //         caretData: null
 
-        }
-    }
+    //     }
+    // }
 };

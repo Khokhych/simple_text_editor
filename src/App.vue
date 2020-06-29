@@ -1,5 +1,5 @@
 <template>
-  <comp :dataA="dataAA" @ffff="change" />
+  <comp :elem="elem" :propsButtons="propsButtons" :selectIsText="selectIsText" @ffff="change" />
 </template>
 
 <script>
@@ -9,9 +9,28 @@ export default {
   name: "app",
   data() {
     return {
-      dataAA: ["2222222222"]
+      dataAA: ["2222222222"],
+      elem: [
+        {
+          text: "Enter text",
+          fontSize: "18",
+          color: "#000000",
+          BGColor: "#ffffff"
+        }
+      ],
+      propsButtons: {
+        fontSize: 18,
+        color: "#000000",
+        BGColor: "#ffffff"
+      },
+      selectIsText: false,
+      params: null,
+      indexlastEditElement: null,
+      indexCaret: null,
+      caretData: null
     };
   },
+
   methods: {
     change(e) {
       console.log(e);
@@ -19,7 +38,6 @@ export default {
     elem() {
       let elem = this.$store.state.text;
       return elem;
-      console.log("-------------------------", elem);
     }
   },
   components: {
