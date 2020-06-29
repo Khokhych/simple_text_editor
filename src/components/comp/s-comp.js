@@ -1,5 +1,4 @@
 let selectText = function () {
-
     if (window.getSelection().isCollapsed) {
         return false
     }
@@ -35,7 +34,6 @@ let selectTextParamsAdd = function () {
         }
     }
     params.string = SText.toString();
-    // console.log(params);
     return params;
 }
 
@@ -44,7 +42,7 @@ function changeData(params, elem, propsButtons) {
     let indexLastSelectElement = params.lastNodeSelect.getAttribute('index');
     if (params.lastNodeSelect == params.firstNodeSelect) {
         let newElements = [];
-
+        console.log(11);
         if (params.firstSumblIndex) {
             let BeforeNewElementText = params.firstNodeSelect.innerText.substring(0, params.firstSumblIndex);
             let before = Object.assign({}, elem[indexFirstSelectElement]);
@@ -104,25 +102,40 @@ function changeData(params, elem, propsButtons) {
     return null;
 };
 
-let changetext = function (params, elem, propsButtons, element) {
+let changetext = function (iLast, elem, element, ) {
+    let childrens = element.target.children;
+
+    if (iLast != null) {
+        let previosChangeElement = childrens[iLast];
+        if (previosChangeElement) {
+            let indexPrevios = +previosChangeElement.getAttribute("index");
+            if (indexPrevios > iLast) {
+                elem.splice(iLast, 1);
+            }
+        } else if (!previosChangeElement) {
+            elem.splice(iLast, 1);
+        }
+
+    }
+
     let sel = window.getSelection();
     let range = sel.getRangeAt(0);
-    let pointedTag = range.startContainer.parentNode;
-    let indexTag = pointedTag.getAttribute("index");
+    let pointedLiTag = range.startContainer.parentNode;
+    let indexTag = +pointedLiTag.getAttribute('index');
+    elem[indexTag].text = pointedLiTag.textContent;
 
-    console.log(range);
-    elem[indexTag].text = pointedTag.innerText;
-    console.log(elem);
-    return elem;
+    return [indexTag];
 }
+
 
 export default {
     methods: {
 
         changetext: function (e) {
-            this.elem = changetext(this.params, this.elem, this.propsButtons, e);
+            this.indexlastEditElement = changetext(this.indexlastEditElement, this.elem, e, this.indexCaret);
         },
-        textWrappMouseUp: function () {
+        textWrappMouseUp: function (e) {
+
             this.selectIsText = selectText();
             if (this.selectIsText) {
                 this.params = selectTextParamsAdd();
@@ -152,37 +165,21 @@ export default {
     data() {
         return {
             elem: [{
-                    text: 'My lovely ',
-                    fontSize: '18',
-                    color: 'red',
-                    BGColor: "#ffffff"
-                },
-                {
-                    text: 'little ',
-                    fontSize: '24',
-                    color: 'pink',
-                    BGColor: "#673AB7"
-                },
-                {
-                    text: 'Little ',
-                    fontSize: '20',
-                    color: 'red',
-                    BGColor: "#673AB7"
-                },
-                {
-                    text: 'Ponny ',
-                    fontSize: '36',
-                    color: 'black',
-                    BGColor: "#cccccc"
-                }
-            ],
+                text: 'Enter text',
+                fontSize: '18',
+                color: '#000000',
+                BGColor: "#ffffff"
+            }, ],
             propsButtons: {
                 fontSize: 18,
                 color: "#000000",
                 BGColor: "#ffffff",
             },
             selectIsText: false,
-            params: null
+            params: null,
+            indexlastEditElement: null,
+            indexCaret: null,
+            caretData: null
 
         }
     }

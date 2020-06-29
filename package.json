@@ -3,6 +3,7 @@
     "description": "simple text editor on Vue.js",
     "version": "1.0.0",
     "author": "khokhych",
+    "homepage": "https://github.com/Khokhych",
     "scripts": {
         "dev": "webpack-dev-server --hot --open",
         "build": "webpack"
